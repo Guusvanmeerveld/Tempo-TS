@@ -18,7 +18,7 @@
 	"license": "MIT",
 	"dependencies": {
 		"@discordjs/opus": "^0.5.3",
-		"axios": "^0.21.1",
+		"axios": "^0.21.2",
 		"bufferutil": "^4.0.3",
 		"chalk": "^4.1.1",
 		"cheerio": "^1.0.0-rc.10",
