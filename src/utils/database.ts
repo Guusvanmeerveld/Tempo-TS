@@ -14,9 +14,9 @@ export class Database {
 	constructor() {
 		this.pool = new Pool({
 			connectionString: process.env.DATABASE_URL || 'postgresql://localhost:5432',
-			// ssl: {
-			// 	rejectUnauthorized: false,
-			// },
+			ssl: {
+				rejectUnauthorized: false,
+			},
 		});
 
 		this.pool.on('error', (err) =>

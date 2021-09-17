@@ -1,18 +1,20 @@
-console.clear();
+import '@utils/env';
 
-import { config } from 'dotenv';
-import { existsSync } from 'fs';
+import Events from 'bot/events';
+import Bot from 'bot';
 
-import Console from '@utils/console';
+if (process.env.NODE_ENV !== 'production') console.clear();
 
-if (existsSync('.env')) {
-	config();
-	Console.success('Found environmental variables in .env file!');
-} else if (process.env.NODE_ENV === 'development') {
-	Console.info('Could not locate .env file! Did you remember to create one?');
-}
+const discordToken = process.env.BOT_TOKEN;
+const bot = new Bot();
 
-import Manager from './manager';
+bot.start(discordToken);
 
-const manager = new Manager();
-manager.start();
+const events = new Events(bot);
+
+bot.on('message', (msg) => events.message(msg));
+bot.on('guildCreate', (guild) => events.guildJoin(guild));
+bot.on('error', (err) => events.error(err));
+bot.on('voiceStateUpdate', (oldState, newState) => events.voice(oldState, newState));
+
+bot.ws.on('INTERACTION_CREATE', (interaction) => events.slash(interaction));

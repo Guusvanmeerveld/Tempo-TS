@@ -7,13 +7,12 @@
 	"repository": "github:guusvanmeerveld/tempo",
 	"markdown": "github",
 	"scripts": {
-		"pretify": "prettier --write .",
+		"prettify": "prettier --write .",
 		"lint": "eslint src",
-		"dev": "ts-node-dev -r tsconfig-paths/register src/bot/start.ts",
-		"dev-full": "ts-node-dev src",
+		"dev": "rollup -cw",
 		"test-build": "tsc --noEmit",
-		"build": "tsc",
-		"start": "node -r ts-node/register/transpile-only -r tsconfig-paths/register . --production"
+		"build": "rollup -c",
+		"start": "node . --production"
 	},
 	"author": "Guus van Meerveld",
 	"license": "MIT",
@@ -23,7 +22,7 @@
 		"bufferutil": "^4.0.3",
 		"chalk": "^4.1.1",
 		"cheerio": "^1.0.0-rc.10",
-		"discord.js-light": "^3.5.11",
+		"discord.js-light": "^4.1.4",
 		"dotenv": "^10.0.0",
 		"ffmpeg-static": "^4.4.0",
 		"humanize-duration": "^3.27.0",
@@ -38,6 +37,9 @@
 		"ytsr": "^3.5.0"
 	},
 	"devDependencies": {
+		"@rollup/plugin-json": "^4.1.0",
+		"@rollup/plugin-run": "^2.1.0",
+		"@rollup/plugin-typescript": "^8.2.5",
 		"@types/humanize-duration": "^3.25.0",
 		"@types/lodash": "^4.14.170",
 		"@types/long": "^4.0.1",
@@ -49,8 +51,8 @@
 		"eslint": "^7.30.0",
 		"eslint-plugin-prettier": "^3.4.0",
 		"prettier": "^2.3.2",
-		"ts-node-dev": "^1.1.8",
-		"tsconfig-paths": "^3.9.0",
+		"rollup": "^2.56.3",
+		"rollup-plugin-ts-paths": "^1.0.5",
 		"typescript": "^4.3.5"
 	}
 }

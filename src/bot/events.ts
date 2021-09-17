@@ -2,7 +2,7 @@ import { Guild, Message, TextChannel, GuildChannel, VoiceState } from 'discord.j
 import Long from 'long';
 
 // import { InteractionCreate } from '@models/requests';
-import { prefix } from '@config/settings.json';
+import { prefix } from '../config/settings.json';
 import { DefaultEmbed } from '@models/embed';
 import Console from '@utils/console';
 
@@ -75,9 +75,7 @@ export default class Events {
 		) {
 			const role = msg.guild.roles.resolve(settings.role);
 
-			msg.channel.send(`You need to have the ${role?.toString()} role to use this command.`, {
-				allowedMentions: { users: [] },
-			});
+			msg.channel.send(`You need to have the ${role?.toString()} role to use this command.`);
 
 			return;
 		}
@@ -120,7 +118,7 @@ export default class Events {
 				const permissions = channel.permissionsFor(user);
 				if (!permissions) return false;
 
-				return channel.type === 'text' && permissions.has('SEND_MESSAGES');
+				return permissions.has('SEND_MESSAGES');
 			})
 			.sort(
 				(a, b) =>

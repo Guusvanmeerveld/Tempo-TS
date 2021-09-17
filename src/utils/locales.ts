@@ -1,6 +1,7 @@
 import Locale, { localeString } from '@models/locales';
 import Bot from 'bot';
 import { Guild } from 'discord.js';
+import { join } from 'path';
 
 export default class LocaleService {
 	client;
@@ -13,7 +14,7 @@ export default class LocaleService {
 	 * @param local - The local to get
 	 */
 	public getFromLocale(local: localeString): Locale {
-		return require(`@config/locales/${local}`);
+		return require(join(process.cwd(), 'src', 'config', 'locales', `${local}.json`));
 	}
 
 	public get(guild: Guild | null): Locale {

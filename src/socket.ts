@@ -1,6 +1,6 @@
 import WebSocket from 'ws';
 
-import { updateSlash } from './bot/slash';
+import { updateCommands } from './bot/slash';
 import Console from '@utils/console';
 import Bot from './bot';
 
@@ -68,7 +68,7 @@ export default class Socket extends WebSocket {
 
 				break;
 			case 'update':
-				updateSlash(this.client);
+				updateCommands(this.client);
 				break;
 			default:
 				break;

@@ -1,7 +1,7 @@
 import { Message } from 'discord.js-light';
 
 import { Command, Requirement } from '@models/command';
-import { Play } from './index';
+import { Play } from './play';
 import Bot from '../bot';
 
 export class PlaySkip implements Command {

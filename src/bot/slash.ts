@@ -8,7 +8,7 @@ import Console from '@utils/console';
 import * as commands from '../commands';
 import Bot from '.';
 
-export const updateSlash = (client: Bot): void => {
+export const updateCommands = (client: Bot): void => {
 	const localCommands: Array<Command> = Object.values(commands).map(
 		(Command) => new Command(client)
 	);

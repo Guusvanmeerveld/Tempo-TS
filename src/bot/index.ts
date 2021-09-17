@@ -1,4 +1,4 @@
-import { Client, Collection } from 'discord.js-light';
+import { Client, Collection, Intents } from 'discord.js-light';
 import WebSocket from 'ws';
 
 import { Command } from '@models/command';
@@ -24,12 +24,7 @@ export default class Bot extends Client {
 
 	constructor() {
 		super({
-			cacheGuilds: true,
-			cacheChannels: false,
-			cacheOverwrites: false,
-			cacheRoles: true,
-			cacheEmojis: false,
-			cachePresences: false,
+			intents: Intents.FLAGS.GUILDS,
 		});
 
 		if (process.env.WEBSOCKET_URL) this.socket = new Socket(this);
@@ -60,7 +55,11 @@ export default class Bot extends Client {
 
 		this.login(token)
 			.then(() => Console.success('Connected with Discord!'))
-			.catch(() => Console.error('Failed to connect with Discord!'))
+			.catch((e) => {
+				Console.error('Failed to connect with Discord!');
+
+				console.log(e);
+			})
 			.finally(() => console.timeEnd('connect-discord'));
 	}
 }
